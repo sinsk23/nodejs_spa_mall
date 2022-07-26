@@ -19,8 +19,13 @@ const requestMiddleware = (req,res,next)=>{
 
 };
 
+
+app.use(express.static("static"));
 app.use(express.json());//body로 들어오는 json형태의 데이터를 파싱해줌
-app.use(requestMiddleware)
+
+app.use(express.urlencoded());//Url encoded 함수 express제공
+
+app.use(requestMiddleware);
 //"/api"라는 경로로 들어왔을때만 goodsRouter를 실행시켜주겠다.
 app.use("/api", [goodsRouter]);
 // app.use("/api", goodsRouter);//app.use("/api", [goodsRouter, userRouter])
